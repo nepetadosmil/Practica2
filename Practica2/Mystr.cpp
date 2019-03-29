@@ -1,6 +1,5 @@
 #include "Mystr.h"
 
-
 Mystr::Mystr()
 {
 	this->capacity = 0;
@@ -18,9 +17,4 @@ Mystr::Mystr(const Mystr &other)
 Mystr::Mystr(const char *other)
 {
 
-}
-
-
-Mystr::~Mystr()
-{
 }
