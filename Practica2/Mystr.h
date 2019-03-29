@@ -15,6 +15,7 @@ public:
 	Mystr();
 	Mystr(const Mystr &other);
 	Mystr(const char *other);
+	inline bool operator==(const Mystr &other);
 	~Mystr();
 };
 
