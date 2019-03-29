@@ -6,8 +6,8 @@ Mystr::Mystr(){
 	this->string[0] = '\0';
 }
 
-
 Mystr::Mystr(const Mystr &other){
+
 }
 
 
