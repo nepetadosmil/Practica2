@@ -10,7 +10,7 @@ Mystr::Mystr()
 
 Mystr::Mystr(const Mystr &other)
 {
-	cdkñjcnebfciubiñen
+
 }
 
 
