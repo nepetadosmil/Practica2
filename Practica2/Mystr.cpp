@@ -57,7 +57,7 @@ int Mystr::Remove(char find){
 	for (unsigned int i = 0; i < Length(); i++) {
 		if (string[i] == find) {
 			for (i; i < Length(); i++){
-				string[i] = string[i++];
+				string[i] = string[i+1];
 			}
 			++removed;
 		}
@@ -67,7 +67,7 @@ int Mystr::Remove(char find){
 }
 
 void Mystr::Print(){
-	std::cout << string;
+	std::cout << string << std::endl;
 }
 
 inline bool Mystr::operator==(const Mystr &other){
@@ -103,4 +103,8 @@ inline bool Mystr::operator>=(const Mystr & other) {
 inline char & Mystr::operator[](int index){
 	assert(index >= 0 && index < capacity);
 	return this->string[index];
+}
+
+Mystr::~Mystr()
+{
 }
