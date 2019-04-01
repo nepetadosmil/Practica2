@@ -19,7 +19,7 @@ Mystr::Mystr(const char *other){
 	this->string = (char *)malloc(sizeof(char) * (this->capacity + 1));//Space for string + '\0'
 	assert(this->string != NULL);//Space was allocated
 
-	strcpy(this->string, other);//Copies string
+	strcpy_s(this->string, sizeof(this->string) - 1, other);//Copies string
 }
 
 unsigned int Mystr::Length(){
@@ -33,7 +33,7 @@ unsigned int Mystr::Capacity(){
 int Mystr::Replace(char find, char replaceBy){
 	int replaced = 0;
 
-	for (int i = 0; i < Length(); i++){
+	for (unsigned i = 0; i < Length(); ++i){
 		if (string[i] == find){
 			string[i] = replaceBy;
 			++replaced;
