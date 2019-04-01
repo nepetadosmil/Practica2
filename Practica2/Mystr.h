@@ -46,6 +46,11 @@ public:
 	// @Return	unsigned int	number of characters replaced
 	int Replace(char find, char replaceBy);
 
+	// Compare two Mystr
+	// @Param	char find		Mystr to compare
+	// @Return	unsigned int	0 if are equal, 1 if the first Mystr is greater, and -1 if it's smaller
+	int Compare(const Mystr &other);
+
 	/*************/
 	/* OPERATORS */
 	/*************/

@@ -43,6 +43,14 @@ int Mystr::Replace(char find, char replaceBy){
 	return replaced;
 }
 
+int Mystr::Compare(const Mystr & other){
+	if ((*this) == other)
+		return 0;
+	else if ((*this) > other)
+		return 1;
+	return -1;
+}
+
 inline bool Mystr::operator==(const Mystr &other){
 	if (strcmp(string, other.string) == 0)
 		return true;
