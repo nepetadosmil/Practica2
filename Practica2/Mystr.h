@@ -3,14 +3,16 @@
 #include <assert.h>
 #include <cstdlib>
 #include <cstring>
+#include <iostream>
 
 #define MEM_MULTIPLIER 2	//How much extra space shall be allocated (multiplier)
-#define MEM_ADDER 0			//How much extra space shall be allocated (adder)
+#define MEM_ADDER	   0	//How much extra space shall be allocated (adder)
 
 class Mystr
 {
 	int capacity;
 	char *string;
+
 public:
 
 	/****************/
@@ -47,9 +49,17 @@ public:
 	int Replace(char find, char replaceBy);
 
 	// Compare two Mystr
-	// @Param	char find		Mystr to compare
+	// @Param	const Mystr		Mystr to compare
 	// @Return	unsigned int	0 if are equal, 1 if the first Mystr is greater, and -1 if it's smaller
 	int Compare(const Mystr &other);
+
+	// Compare two Mystr
+	// @Param	char find		character to remove
+	// @Return	unsigned int	number of characters removed
+	int Remove(char find);
+
+	void Print();
+
 
 	/*************/
 	/* OPERATORS */

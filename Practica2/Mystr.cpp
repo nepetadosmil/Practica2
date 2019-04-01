@@ -15,7 +15,7 @@ Mystr::Mystr(const Mystr &other){
 Mystr::Mystr(const char *other){
 	assert(other != nullptr);//String exists
 
-	this->capacity = strlen(other);//Capaity is length of string to copy
+	this->capacity = (int)strlen(other);//Capaity is length of string to copy
 	this->string = (char *)malloc(sizeof(char) * (this->capacity + 1));//Space for string + '\0'
 	assert(this->string != NULL);//Space was allocated
 
@@ -23,7 +23,7 @@ Mystr::Mystr(const char *other){
 }
 
 unsigned int Mystr::Length(){
-	return strlen(string);
+	return (unsigned int)strlen(string);
 }
 
 unsigned int Mystr::Capacity(){
@@ -33,7 +33,7 @@ unsigned int Mystr::Capacity(){
 int Mystr::Replace(char find, char replaceBy){
 	int replaced = 0;
 
-	for (int i = 0; i < Length(); i++){
+	for (unsigned int i = 0; i < Length(); i++){
 		if (string[i] == find){
 			string[i] = replaceBy;
 			++replaced;
@@ -49,6 +49,25 @@ int Mystr::Compare(const Mystr & other){
 	else if ((*this) > other)
 		return 1;
 	return -1;
+}
+
+int Mystr::Remove(char find){
+	int removed = 0;
+
+	for (unsigned int i = 0; i < Length(); i++) {
+		if (string[i] == find) {
+			for (i; i < Length(); i++){
+				string[i] = string[i++];
+			}
+			++removed;
+		}
+	}
+
+	return removed;
+}
+
+void Mystr::Print(){
+	std::cout << string;
 }
 
 inline bool Mystr::operator==(const Mystr &other){
