@@ -15,7 +15,7 @@ Mystr::Mystr(const Mystr &other){
 Mystr::Mystr(const char *other){
 	assert(other != nullptr);//String exists
 
-	this->capacity = (int)strlen(other);//Capaity is length of string to copy
+	this->capacity = (int)strlen(other);//Capacity is length of string to copy
 
 	size_t space = sizeof(char) * (this->capacity + 1);//Size of memory to allocate
 	this->string = (char *)malloc(space);//Space for string + '\0'
@@ -110,4 +110,5 @@ inline char & Mystr::operator[](int index){
 
 Mystr::~Mystr()
 {
+	free(this->string);
 }
