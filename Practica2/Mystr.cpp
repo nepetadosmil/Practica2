@@ -16,10 +16,12 @@ Mystr::Mystr(const char *other){
 	assert(other != nullptr);//String exists
 
 	this->capacity = (int)strlen(other);//Capaity is length of string to copy
-	this->string = (char *)malloc(sizeof(char) * (this->capacity + 1));//Space for string + '\0'
+
+	size_t space = sizeof(char) * (this->capacity + 1);//Size of memory to allocate
+	this->string = (char *)malloc(space);//Space for string + '\0'
 	assert(this->string != NULL);//Space was allocated
 
-	strcpy_s(this->string, sizeof(this->string) - 1, other);//Copies string
+	strcpy_s(this->string, space, other);//Copies string
 }
 
 unsigned int Mystr::Length(){
