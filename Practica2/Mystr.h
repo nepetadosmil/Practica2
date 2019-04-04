@@ -23,6 +23,7 @@ public:
 	Mystr();
 	
 	//Copies another str object
+	//@Param	Mystr	Mystr object to copy
 	Mystr(const Mystr &other);
 	
 	//Creates a Mystr object from the given string
