@@ -1,28 +1,27 @@
 #include "Mystr.h"
 
 Mystr::Mystr(){
-	this->capacity = 0;
-	this->string = (char *) malloc(sizeof(char));//Allocates space for '\0'
+	this->capacity = 1;
+	this->string = (char *) malloc(sizeof(char) * MEM_MULTIPLIER);//Allocates space for '\0'
 	this->string[0] = '\0';
 }
 
 Mystr::Mystr(const Mystr &other){
 	this->capacity = other.capacity;
-	this->string = (char *)malloc(sizeof(char) * (this->capacity + 1));//Space for string + '\0'
+	this->string = (char *)malloc(sizeof(char) * (this->capacity) * MEM_MULTIPLIER);//Space for string + '\0'
 	assert(this->string != NULL);//Space was allocated
 }
 
 Mystr::Mystr(const char *other){
 	assert(other != nullptr);//String exists
 
-	this->capacity = (int)strlen(other);//Capacity is length of string to copy
+	this->capacity = (int)strlen(other) + 1;//Capacity is length of string + 1 to copy
 
-	size_t space = sizeof(char) * (this->capacity + 1);//Size of memory to allocate
-	this->string = (char *)malloc(space);//Space for string + '\0'
+	this->string = (char *)malloc(sizeof(char) * (this->capacity));//Space for string + '\0'
 	assert(this->string != NULL);//Space was allocated
 
 	strcpy_s(this->string, sizeof(this->string), other);//Copies string
-	strcpy_s(this->string, space, other);//Copies string
+	strcpy_s(this->string, sizeof(char) * (this->capacity), other);//Copies string
 }
 
 unsigned int Mystr::Length(){
@@ -65,6 +64,11 @@ int Mystr::Remove(char find){
 			}
 			++removed;
 		}
+	}
+
+	if (Length() <= Capacity() / 4){
+		// REDUCE CAPACITY
+		capacity /= 2;
 	}
 
 	return removed;
@@ -110,8 +114,5 @@ inline char & Mystr::operator[](int index){
 }
 
 Mystr::~Mystr(){
-	free(string);
-Mystr::~Mystr()
-{
 	free(this->string);
 }
