@@ -19,7 +19,7 @@ Mystr::Mystr(const char *other){
 	this->string = (char *)malloc(sizeof(char) * (this->capacity + 1));//Space for string + '\0'
 	assert(this->string != NULL);//Space was allocated
 
-	strcpy_s(this->string, sizeof(this->string) - 1, other);//Copies string
+	strcpy_s(this->string, sizeof(this->string), other);//Copies string
 }
 
 unsigned int Mystr::Length(){
@@ -106,6 +106,6 @@ inline char & Mystr::operator[](int index){
 	return this->string[index];
 }
 
-Mystr::~Mystr()
-{
+Mystr::~Mystr(){
+	free(string);
 }
