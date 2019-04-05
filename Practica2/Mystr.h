@@ -104,7 +104,7 @@ public:
 	// @Precond					index >= 0 && index < capacity
 	// @Param	int				index to find
 	// @Return	char			character at index
-	char &operator [] (int index);
+	char &operator [] (unsigned index);
 
 	/**************/
 	/* DESTRUCTOR */

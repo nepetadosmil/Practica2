@@ -96,9 +96,7 @@ void Mystr::Print(){
 }
 
 bool Mystr::operator==(const Mystr &other){
-	if (strcmp(string, other.string) == 0)
-		return true;
-	return false;
+	return (!strcmp(string, other.string));
 }
 
 bool Mystr::operator!=(const Mystr &other){
@@ -106,15 +104,11 @@ bool Mystr::operator!=(const Mystr &other){
 }
 
 bool Mystr::operator<(const Mystr & other){
-	if (strcmp(string, other.string) < 0)
-		return true;
-	return false;
+	return (strcmp(this->string, other.string) < 0);
 }
 
 bool Mystr::operator>(const Mystr & other) {
-	if (strcmp(string, other.string) > 0)
-		return true;
-	return false;
+	return (strcmp(this->string, other.string) > 0);
 }
 
 bool Mystr::operator<=(const Mystr & other) {
@@ -125,8 +119,8 @@ bool Mystr::operator>=(const Mystr & other) {
 	return !((*this) < other);
 }
 
-char & Mystr::operator[](int index){
-	assert(index >= 0 && index < capacity);
+char & Mystr::operator[](unsigned index){
+	assert(index < this->capacity);
 	return this->string[index];
 }
 
