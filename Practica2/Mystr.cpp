@@ -27,19 +27,19 @@ Mystr::Mystr(const char *other){
 }
 
 unsigned Mystr::Length(){
-	return (unsigned)strlen(string);
+	return (unsigned)strlen(this->string);
 }
 
-unsigned int Mystr::Capacity(){
-	return capacity;
+unsigned Mystr::Capacity(){
+	return this->capacity;
 }
 
 int Mystr::Replace(char find, char replaceBy){
 	int replaced = 0;
+	unsigned length = this->Length();//We only need to get the length once
 
-
-	for (unsigned i = 0; i < Length(); ++i){
-		if (string[i] == find){
+	for (unsigned i = 0; i < length; ++i) {//Iterates over string
+		if (string[i] == find) {//If matches character to search
 			string[i] = replaceBy;
 			++replaced;
 		}

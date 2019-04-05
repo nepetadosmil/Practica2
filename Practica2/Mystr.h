@@ -10,7 +10,7 @@
 
 class Mystr
 {
-	int capacity;
+	unsigned capacity;
 	char *string;
 
 public:
@@ -36,17 +36,17 @@ public:
 	/*************/
 
 	// Size of char array
-	// @Return	unsigned int	size of char array
-	unsigned int Length();
+	// @Return	unsigned		size of char array
+	unsigned Length();
 
 	// Capacity of allocated memory
-	// @Return	unsigned int	capacity
-	unsigned int Capacity();
+	// @Return	unsigned		capacity of memory allocated
+	unsigned Capacity();
 
 	// Search characters equal to find and replaces them by replaceBy
 	// @Param	char find		character replaced
 	// @Param	char replaceBy	new character
-	// @Return	unsigned int	number of characters replaced
+	// @Return	int				number of characters replaced
 	int Replace(char find, char replaceBy);
 
 	// Compare two Mystr
