@@ -55,25 +55,37 @@ int Mystr::Compare(const Mystr & other){
 		return 1;
 	return -1;//Other es mayor que esta*/
 
-	//Más eficiente (En ejercicio pone que SE PUEDE USAR strcmp):
+	//Más eficiente (En ejercicio pone que SE PUEDE USAR strcmp)
 	return strcmp(this->string, other.string);
 }
 
 int Mystr::Remove(char find){
-	int removed = 0;
+	int removed = 0;//Counts characters that get removed
+	unsigned length = this->Length();
 
-	for (unsigned int i = 0; i < Length(); i++) {
-		if (string[i] == find) {
-			for (i; i < Length(); i++){
-				string[i] = string[i+1];
-			}
+	for (unsigned i = 0; i < length; ++i) {//Replaces all matches with '\0'. We'll later move all characters to their new places
+		//By doing it this way, we only need to iterate the string twice and not once per match
+		if (this->string[i] == find){
+			this->string[i] = '\0';
 			++removed;
 		}
 	}
 
-	if (Length() <= Capacity() / 4){
+	unsigned i;
+	unsigned last_pos;//We need it out of loop to add the new '\0' at the end
+	for (i = 0, last_pos = 0; i < length; ++i) {//Replace all characters to be replaced
+		if (this->string[i] != '\0') {
+			this->string[last_pos++] = this->string[i];
+		}
+	}
+	this->string[last_pos] = '\0';
+
+	length = last_pos++;
+	if (last_pos <= (this->Capacity() / (MEM_MULTIPLIER * 2))){//If string (including '\0') uses less than (1/2)*(MEM_MULTIPLIER) of the capacity, free MEM_MULTIPLIER size
 		// REDUCE CAPACITY
-		capacity /= 2;
+		capacity /= MEM_MULTIPLIER;
+		this->string = (char *)realloc(this->string, sizeof(char) * this->capacity);
+		assert(this->string != NULL);
 	}
 
 	return removed;

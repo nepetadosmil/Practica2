@@ -27,7 +27,8 @@ public:
 	Mystr(const Mystr &other);
 	
 	//Creates a Mystr object from the given string
-	//@Precond		other != NULL
+	//@Param	char[]	string to copy/create from
+	//@Precond			other != NULL
 	Mystr(const char *other);
 
 
