@@ -72,38 +72,38 @@ public:
 	// Compares if two Mystr are equal.
 	// @Param	Mystr			Mystr to compare
 	// @Return	bool			result of the comparation
-	inline bool operator == (const Mystr &other);
+	bool operator == (const Mystr &other);
 
 	// Compares if two Mystr are different.
 	// @Param	Mystr			Mystr to compare
 	// @Return	bool			result of the comparation
-	inline bool operator != (const Mystr &other);
+	bool operator != (const Mystr &other);
 
 	// Compares if a Mystr is smaller than other.
 	// @Param	Mystr			Mystr to compare
 	// @Return	bool			result of the comparation
-	inline bool operator < (const Mystr& other);
+	bool operator < (const Mystr& other);
 
 	// Compares if a Mystr is greater than other.
 	// @Param	Mystr			Mystr to compare
 	// @Return	bool			result of the comparation
-	inline bool operator > (const Mystr& other);
+	bool operator > (const Mystr& other);
 
 	// Compares if a Mystr is equal or smaller than other.
 	// @Param	Mystr			Mystr to compare
 	// @Return	bool			result of the comparation
-	inline bool operator <= (const Mystr& other);
+	bool operator <= (const Mystr& other);
 
 	// Compares if a Mystr is equal or greater than other.
 	// @Param	Mystr			Mystr to compare
 	// @Return	bool			result of the comparation
-	inline bool operator >= (const Mystr& other);
+	bool operator >= (const Mystr& other);
 
 	// Get the character at given index.
 	// @Precond					index >= 0 && index < capacity
 	// @Param	int				index to find
 	// @Return	char			character at index
-	inline char &operator [] (int index);
+	char &operator [] (int index);
 
 	/**************/
 	/* DESTRUCTOR */
