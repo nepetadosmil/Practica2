@@ -35,8 +35,8 @@ unsigned Mystr::Capacity(){
 }
 
 int Mystr::Replace(char find, char replaceBy){
-	int replaced = 0;
-	unsigned length = this->Length();//We only need to get the length once
+	int replaced = 0;//Counts characters replaced
+	unsigned length = this->Length();//Only get the length once
 
 	for (unsigned i = 0; i < length; ++i) {//Iterates over string
 		if (string[i] == find) {//If matches character to search
@@ -49,11 +49,11 @@ int Mystr::Replace(char find, char replaceBy){
 }
 
 int Mystr::Compare(const Mystr & other){
-	if ((*this) == other)
+	if ((*this) == other)//Son iguales
 		return 0;
-	else if ((*this) > other)
+	else if ((*this) > other)//Esta es mayor que other
 		return 1;
-	return -1;
+	return -1;//Other es mayor que esta
 }
 
 int Mystr::Remove(char find){
