@@ -49,11 +49,14 @@ int Mystr::Replace(char find, char replaceBy){
 }
 
 int Mystr::Compare(const Mystr & other){
-	if ((*this) == other)//Son iguales
+	/*if ((*this) == other)//Son iguales
 		return 0;
 	else if ((*this) > other)//Esta es mayor que other
 		return 1;
-	return -1;//Other es mayor que esta
+	return -1;//Other es mayor que esta*/
+
+	//Más eficiente (En ejercicio pone que SE PUEDE USAR strcmp):
+	return strcmp(this->string, other.string);
 }
 
 int Mystr::Remove(char find){
