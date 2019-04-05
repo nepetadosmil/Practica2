@@ -8,6 +8,7 @@ Mystr::Mystr(){
 	this->string[0] = '\0';
 }
 
+
 Mystr::Mystr(const Mystr &other){
 	this->capacity = other.capacity;//Will be exact copy. Capacity includes '\0' and any extra space
 	this->string = (char *)malloc(sizeof(char) * this->capacity);
@@ -15,6 +16,7 @@ Mystr::Mystr(const Mystr &other){
 	assert(this->string != NULL);//Memory was allocated
 	strcpy_s(this->string, sizeof(char) * this->capacity, other.string);
 }
+
 
 Mystr::Mystr(const char *other){
 	assert(other != nullptr);//String exists
@@ -26,13 +28,17 @@ Mystr::Mystr(const char *other){
 	strcpy_s(this->string, sizeof(char) * this->capacity, other);
 }
 
+
 unsigned Mystr::Length(){
 	return (unsigned)strlen(this->string);
 }
 
+
+
 unsigned Mystr::Capacity(){
 	return this->capacity;
 }
+
 
 int Mystr::Replace(char find, char replaceBy){
 	int replaced = 0;//Counts characters replaced
@@ -48,6 +54,7 @@ int Mystr::Replace(char find, char replaceBy){
 	return replaced;
 }
 
+
 int Mystr::Compare(const Mystr & other){
 	/*if ((*this) == other)//Son iguales
 		return 0;
@@ -58,6 +65,7 @@ int Mystr::Compare(const Mystr & other){
 	//Más eficiente (En ejercicio pone que SE PUEDE USAR strcmp)
 	return strcmp(this->string, other.string);
 }
+
 
 int Mystr::Remove(char find){
 	int removed = 0;//Counts characters that get removed
@@ -79,8 +87,8 @@ int Mystr::Remove(char find){
 		}
 	}
 	this->string[last_pos] = '\0';
-
 	length = last_pos++;
+
 	if (last_pos <= (this->Capacity() / (MEM_MULTIPLIER * 2))){//If string (including '\0') uses less than (1/2)*(MEM_MULTIPLIER) of the capacity, free MEM_MULTIPLIER size
 		// REDUCE CAPACITY
 		capacity /= MEM_MULTIPLIER;
@@ -91,10 +99,29 @@ int Mystr::Remove(char find){
 	return removed;
 }
 
+
+Mystr Mystr::Left(unsigned num){
+	assert(num <= this->Length());
+	
+	char* temp = (char *)malloc(sizeof(char) * (num + 1));
+	assert(temp != NULL);
+	strncpy_s(temp, num + 1, this->string, num);
+
+	Mystr nueva(temp);//Crea objeto
+	free(temp);//Libera cadena temporal
+	return nueva;
+}
+
+
 void Mystr::Print(){
 	std::cout << string << std::endl;
 }
 
+
+
+/*************/
+/* OPERATORS */
+/*************/
 bool Mystr::operator==(const Mystr &other){
 	return (!strcmp(string, other.string));
 }
