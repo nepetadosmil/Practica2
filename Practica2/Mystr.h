@@ -5,8 +5,8 @@
 #include <cstring>
 #include <iostream>
 
-#define MEM_MULTIPLIER 2	//How much extra space shall be allocated (multiplier)
-#define MEM_ADDER	   0	//How much extra space shall be allocated (adder)
+#define MEM_MULTIPLIER 2	//How much extra space shall be allocated (multiplier) !!IF <= 0, NO SPACE WILL EVER BE ALLOCATED!!
+#define MEM_ADDER	   0	//How many extra spaces shall be allocated (adder)
 
 class Mystr
 {
@@ -58,6 +58,9 @@ public:
 	// @Param	char find		character to remove
 	// @Return	unsigned int	number of characters removed
 	int Remove(char find);
+
+	// Gets the string of n characters from the end
+	// @Param	unsigned int	Number of characters from the end
 
 	void Print();
 

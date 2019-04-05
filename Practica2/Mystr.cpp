@@ -1,31 +1,33 @@
 #include "Mystr.h"
 
 Mystr::Mystr(){
-	this->capacity = 1;
-	this->string = (char *) malloc(sizeof(char) * MEM_MULTIPLIER);//Allocates space for '\0'
+	this->capacity = MEM_MULTIPLIER + MEM_ADDER;// [1 * (MEM_MULTIPLIER + MEM_ADDER)], where 1 is the number of characters to write including '\0'
+	this->string = (char *)malloc(sizeof(char) * this->capacity);
+	
+	assert(this->string != NULL);//Memory was allocated
 	this->string[0] = '\0';
 }
 
 Mystr::Mystr(const Mystr &other){
-	this->capacity = other.capacity;
-	this->string = (char *)malloc(sizeof(char) * (this->capacity) * MEM_MULTIPLIER);//Space for string + '\0'
-	assert(this->string != NULL);//Space was allocated
+	this->capacity = other.capacity;//Will be exact copy. Capacity includes '\0' and any extra space
+	this->string = (char *)malloc(sizeof(char) * this->capacity);
+	
+	assert(this->string != NULL);//Memory was allocated
+	strcpy_s(this->string, sizeof(char) * this->capacity, other.string);
 }
 
 Mystr::Mystr(const char *other){
 	assert(other != nullptr);//String exists
 
-	this->capacity = (int)strlen(other) + 1;//Capacity is length of string + 1 to copy
+	this->capacity = ((strlen(other) + 1) * MEM_MULTIPLIER) + MEM_ADDER;//Includes '\0' and extra space(s)
+	this->string = (char *)malloc(sizeof(char) * this->capacity);
 
-	this->string = (char *)malloc(sizeof(char) * (this->capacity));//Space for string + '\0'
-	assert(this->string != NULL);//Space was allocated
-
-	strcpy_s(this->string, sizeof(this->string), other);//Copies string
-	strcpy_s(this->string, sizeof(char) * (this->capacity), other);//Copies string
+	assert(this->string != NULL);//Memory was allocated
+	strcpy_s(this->string, sizeof(char) * this->capacity, other);
 }
 
-unsigned int Mystr::Length(){
-	return (unsigned int)strlen(string);
+unsigned Mystr::Length(){
+	return (unsigned)strlen(string);
 }
 
 unsigned int Mystr::Capacity(){
