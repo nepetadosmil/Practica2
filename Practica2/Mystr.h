@@ -107,9 +107,16 @@ public:
 	unsigned ToLower();
 
 	// Checks if the string starts with parameter given
-	// @Param	const &Mystr	String to compare the beginning
+	// @Param	const &Mystr	String to compare the beginning with
+	// @Precond					Length of other <= Length of this
 	// @Returns	bool			true if string starts with the one given
 	bool StartsWith(const Mystr& other);
+
+	// Checks if the string ends with parameter given
+	// @Param	const &Mystr	String to compare the ending with
+	// @Precond					Length of other <= Length of this
+	// @Returns	bool			true if string starts with the one given
+	bool EndsWith(const Mystr& other);
 
 	// Prints the string
 	void Print();

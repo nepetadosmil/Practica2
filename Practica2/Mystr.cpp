@@ -226,7 +226,18 @@ unsigned Mystr::ToLower() {
 
 
 bool Mystr::StartsWith(const Mystr& other) {
-	return (!strncmp(this->string, other.string, ((Mystr)other).Length()));
+	unsigned length = ((Mystr)other).Length();
+	assert(length <= this->Length());
+	return (!strncmp(this->string, other.string, length));
+}
+
+
+bool Mystr::EndsWith(const Mystr& other) {
+	unsigned len_this = this->Length();
+	unsigned len_other = ((Mystr)other).Length();
+	assert(len_other <= len_this);
+
+	return (!strcmp(this->string + len_this - len_other + 1, other.string));
 }
 
 
