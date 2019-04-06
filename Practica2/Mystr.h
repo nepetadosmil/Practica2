@@ -61,10 +61,16 @@ public:
 	int Remove(char find);
 
 	// Gets the string of n characters from the left
-	// @Param	unsigned		Number of characters from the end
+	// @Param	unsigned		Number of characters from the start
 	// @Precond					num <= length
 	// @Return	Mystr			Object with the string of length given
 	Mystr Left(unsigned num);
+
+	// Gets the string of n characters from the right
+	// @Param	unsigned		Number of characters from the end
+	// @Precond					num <= length
+	// @Return	Mystr			Object with the string of length given
+	Mystr Right(unsigned num);
 
 	void Print();
 

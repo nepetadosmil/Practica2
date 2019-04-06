@@ -112,6 +112,23 @@ Mystr Mystr::Left(unsigned num){
 	return nueva;
 }
 
+Mystr Mystr::Right(unsigned num) {
+	unsigned length = this->Length();
+	assert(num <= length);
+
+	unsigned start_index = length - num;//Index of first character
+	length = length - start_index;
+	
+	char* temp = (char*)malloc(sizeof(char) * (length + 1));
+	assert(temp != NULL);
+
+	strncpy_s(temp, num + 1, this->string + start_index, num);
+
+	Mystr nueva(temp);//Crea objeto
+	free(temp);//Libera cadena temporal
+	return nueva;
+}
+
 
 void Mystr::Print(){
 	std::cout << string << std::endl;
