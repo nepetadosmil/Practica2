@@ -105,7 +105,7 @@ int Mystr::Remove(char find){
 	}
 	this->string[last_pos] = '\0';
 
-	this->check_mem(last_pos);//Frees/allocates memory if necessary 
+	this->check_mem(last_pos);//Reallocates memory if necessary 
 
 	return removed;
 }
@@ -157,6 +157,31 @@ Mystr Mystr::Substring(unsigned initialIndex, unsigned finalIndex) {
 	free(temp);
 
 	return nueva;
+}
+
+
+unsigned Mystr::TrimRight() {
+	int last = this->Length() - 1;//Last index
+	unsigned count = 0;
+
+	for (last; last >= 0 && this->string[last] == ' '; --last, ++count);//Find where the last character is
+	this->string[++last] = '\0';//Go right after and add the terminator
+
+	this->check_mem(last);//Reallocates memory if necessary
+	return count;
+}
+
+
+unsigned Mystr::TrimLeft() {
+	int length = this->Length();//Last index
+	unsigned first;
+
+	for (first = 0; this->string[first] == ' '; ++first, --length);//Find where the first character is
+
+	strncpy_s(this->string, length + 1, this->string + first, length);//Move the string to its new position without spaces
+
+	this->check_mem(length);//Reallocates memory if necessary
+	return first;
 }
 
 

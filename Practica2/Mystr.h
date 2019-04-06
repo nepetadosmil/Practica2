@@ -85,6 +85,14 @@ public:
 	// @Return	Mystr			Object with the string requested
 	Mystr Substring(unsigned initialIndex, unsigned finalIndex);
 
+	// Removes any spaces from the right side of the string
+	// @Return	unsigned		Number of spaces removed
+	unsigned TrimRight();
+
+	// Removes any spaces from the left side of the string
+	// @Return	unsigned		Number of spaces removed
+	unsigned TrimLeft();
+
 	void Print();
 
 
