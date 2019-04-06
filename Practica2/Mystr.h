@@ -5,14 +5,19 @@
 #include <cstring>
 #include <iostream>
 
-#define MEM_MULTIPLIER 2	//How much extra space shall be allocated (multiplier) !!IF <= 0, NO SPACE WILL EVER BE ALLOCATED!!
-#define MEM_ADDER	   0	//How many extra spaces shall be allocated (adder)
+#define MEM_MULTIPLIER 2	//How much extra space shall be allocated (multiplier) !!MUST BE >0!!
+#define MEM_ADDER	   0	//How many extra spaces shall be allocated (adder) !!MUST BE >=0!!
 
 class Mystr
 {
 	unsigned capacity;
 	char *string;
 
+	// (Re)allocates memory where/when necessary
+	// !!IT DOES NOT FREE MEMORY COMPLETELY!! - It will always add an extra space for terminator '\0'
+	// @Param	unsigned	Current number of characters to be stored (not counting terminator)
+	// @Return	char *		Memory location to store needed number of characters + '\0'
+	void check_mem(unsigned needed);
 public:
 
 	/****************/

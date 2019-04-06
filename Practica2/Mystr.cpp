@@ -1,5 +1,21 @@
 #include "Mystr.h"
 
+void Mystr::check_mem(unsigned needed) {
+	if (needed >= this->Capacity()) {//If no memory allocated yet or not enough memory
+		this->capacity = ((needed + 1) * MEM_MULTIPLIER) + MEM_ADDER;
+
+		this->string = (char*)realloc(this->string, sizeof(char) * this->Capacity());
+		assert(this->string != NULL);
+	}
+	else if (needed < (this->Capacity() / (MEM_MULTIPLIER * 2))) {//If enough memory is not used free some of it
+		this->capacity /= MEM_MULTIPLIER;
+		
+		this->string = (char*)realloc(this->string, sizeof(char) * this->Capacity());
+		assert(this->string != NULL);
+	}
+}
+
+
 Mystr::Mystr(){
 	this->capacity = MEM_MULTIPLIER + MEM_ADDER;// [1 * (MEM_MULTIPLIER + MEM_ADDER)], where 1 is the number of characters to write including '\0'
 	this->string = (char *)malloc(sizeof(char) * this->capacity);
