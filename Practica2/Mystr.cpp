@@ -1,32 +1,33 @@
 #include "Mystr.h"
 
-void Mystr::check_mem(unsigned needed) {
-	if (needed >= this->Capacity()) {//If no memory allocated yet or not enough memory
-		this->capacity = ((needed + 1) * MEM_MULTIPLIER) + MEM_ADDER;
+void Mystr::check_mem(unsigned chars) {
+	if (chars >= this->Capacity()) {//If not enough memory
+		this->capacity = ((chars + 1) * MEM_MULTIPLIER) + MEM_ADDER;
 
-		this->string = (char*)realloc(this->string, sizeof(char) * this->Capacity());
+		realloc(this->string, sizeof(char) * this->Capacity());
 		assert(this->string != NULL);
 	}
-	else if (needed < (this->Capacity() / (MEM_MULTIPLIER * 2))) {//If enough memory is not used free some of it
+	else if (chars < (this->Capacity() / (MEM_MULTIPLIER * 2))) {//If enough memory is not used free some of it
 		this->capacity /= MEM_MULTIPLIER;
 		
-		this->string = (char*)realloc(this->string, sizeof(char) * this->Capacity());
+		realloc(this->string, sizeof(char) * this->Capacity());
 		assert(this->string != NULL);
 	}
 }
 
 
 Mystr::Mystr(){
-	this->capacity = MEM_MULTIPLIER + MEM_ADDER;// [1 * (MEM_MULTIPLIER + MEM_ADDER)], where 1 is the number of characters to write including '\0'
-	this->string = (char *)malloc(sizeof(char) * this->capacity);
+	this->capacity = MEM_MULTIPLIER + MEM_ADDER;// [(1 * MEM_MULTIPLIER) + MEM_ADDER], where 1 is the number of characters to write including '\0'
 	
+	this->string = (char *)malloc(sizeof(char) * this->capacity);
 	assert(this->string != NULL);//Memory was allocated
+
 	this->string[0] = '\0';
 }
 
 
 Mystr::Mystr(const Mystr &other){
-	this->capacity = other.capacity;//Will be exact copy. Capacity includes '\0' and any extra space
+	this->capacity = ((strlen(other.string) + 1) * MEM_MULTIPLIER) + MEM_ADDER;
 	this->string = (char *)malloc(sizeof(char) * this->capacity);
 	
 	assert(this->string != NULL);//Memory was allocated
@@ -103,14 +104,8 @@ int Mystr::Remove(char find){
 		}
 	}
 	this->string[last_pos] = '\0';
-	length = last_pos++;
 
-	if (last_pos <= (this->Capacity() / (MEM_MULTIPLIER * 2))){//If string (including '\0') uses less than (1/2)*(MEM_MULTIPLIER) of the capacity, free MEM_MULTIPLIER size
-		// REDUCE CAPACITY
-		capacity /= MEM_MULTIPLIER;
-		this->string = (char *)realloc(this->string, sizeof(char) * this->capacity);
-		assert(this->string != NULL);
-	}
+	this->check_mem(last_pos);//Frees/allocates memory if necessary 
 
 	return removed;
 }
@@ -156,8 +151,9 @@ Mystr Mystr::Substring(unsigned initialIndex, unsigned finalIndex) {
 	char* temp = (char*)malloc(sizeof(char) * (length + 1));
 	assert(temp != NULL);
 
-	strncpy_s(temp, length + 1, this->string, length);
+	strncpy_s(temp, length + 1, this->string + initialIndex, length);
 	Mystr nueva(temp);
+
 	free(temp);
 
 	return nueva;
