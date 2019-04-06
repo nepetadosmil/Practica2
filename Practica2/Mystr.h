@@ -102,6 +102,10 @@ public:
 	// @Return	unsigned		Total number of characters converted to uppercase
 	unsigned ToUpper();
 
+	// Converts the string to uppercase
+	// @Return	unsigned		Total number of characters converted to uppercase
+	unsigned ToLower();
+
 	// Prints the string
 	void Print();
 

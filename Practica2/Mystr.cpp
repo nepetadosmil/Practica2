@@ -201,7 +201,23 @@ unsigned Mystr::ToUpper() {
 		
 		if (tmp == this->string[i])
 			continue;
-		//If not CAPS already
+		//If not ~UPPERCASE~ already
+		this->string[i] = tmp;
+		++count;
+	}
+	return count;
+}
+
+
+unsigned Mystr::ToLower() {
+	unsigned count = 0;
+	char tmp;
+	for (unsigned i = 0; this->string[i] != '\0'; ++i) {
+		tmp = tolower(this->string[i]);
+
+		if (tmp == this->string[i])
+			continue;
+		//If not ~lowercase~ already
 		this->string[i] = tmp;
 		++count;
 	}
