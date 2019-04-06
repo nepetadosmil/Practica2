@@ -93,6 +93,11 @@ public:
 	// @Return	unsigned		Number of spaces removed
 	unsigned TrimLeft();
 
+	// Removes any spaces from the left AND the right of the string
+	// @Return	unsigned		Total number of spaces removed
+	unsigned Trim();
+
+
 	void Print();
 
 

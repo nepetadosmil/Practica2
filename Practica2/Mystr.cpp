@@ -165,7 +165,7 @@ unsigned Mystr::TrimRight() {
 	unsigned count = 0;
 
 	for (last; last >= 0 && this->string[last] == ' '; --last, ++count);//Find where the last character is
-	this->string[++last] = '\0';//Go right after and add the terminator
+	this->string[++last] = '\0';//Go right after it and add the terminator
 
 	this->check_mem(last);//Reallocates memory if necessary
 	return count;
@@ -184,6 +184,13 @@ unsigned Mystr::TrimLeft() {
 	return first;
 }
 
+
+unsigned Mystr::Trim() {
+	//We trim right first for efficiency (because TrimLeft will have to move less characters if any removed from the right)
+	unsigned removed = this->TrimRight();
+	removed += this->TrimLeft();
+	return removed;
+}
 
 void Mystr::Print(){
 	std::cout << string << std::endl;
