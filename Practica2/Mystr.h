@@ -118,6 +118,11 @@ public:
 	// @Returns	bool			true if string starts with the one given
 	bool EndsWith(const Mystr& other);
 
+	// Concatenates this string and the one given
+	// @Param	const &Mystr	String to concatenate
+	// @Returns	Mystr			Mystr object with other concatenated
+	Mystr Concatenate(const Mystr& other);
+
 	// Prints the string
 	void Print();
 

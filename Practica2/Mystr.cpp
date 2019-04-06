@@ -241,6 +241,13 @@ bool Mystr::EndsWith(const Mystr& other) {
 }
 
 
+Mystr Mystr::Concatenate(const Mystr& other) {
+	Mystr temp(*this);//Creates new object
+	temp += other;//Appends the other
+
+	return temp;
+}
+
 void Mystr::Print(){
 	std::cout << string << std::endl;
 }
