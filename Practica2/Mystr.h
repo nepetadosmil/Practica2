@@ -72,6 +72,14 @@ public:
 	// @Return	Mystr			Object with the string of length given
 	Mystr Right(unsigned num);
 
+	// Gets the string from indicated start to indicated end
+	// @Param	unsigned		First index
+	// @Param	unsigned		Last index
+	// @Precond					initialIndex >= 0 && initialIndex <= finalIndex
+	// @Precond					finalIndex < length
+	// @Return	Mystr			Object with the string requested
+	Mystr Substring(unsigned initialIndex, unsigned finalIndex);
+
 	void Print();
 
 

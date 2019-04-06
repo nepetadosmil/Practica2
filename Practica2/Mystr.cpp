@@ -112,6 +112,7 @@ Mystr Mystr::Left(unsigned num){
 	return nueva;
 }
 
+
 Mystr Mystr::Right(unsigned num) {
 	unsigned length = this->Length();
 	assert(num <= length);
@@ -122,10 +123,27 @@ Mystr Mystr::Right(unsigned num) {
 	char* temp = (char*)malloc(sizeof(char) * (length + 1));
 	assert(temp != NULL);
 
-	strncpy_s(temp, num + 1, this->string + start_index, num);
+	strncpy_s(temp, length + 1, this->string + start_index, length);
 
 	Mystr nueva(temp);//Crea objeto
 	free(temp);//Libera cadena temporal
+	return nueva;
+}
+
+
+Mystr Mystr::Substring(unsigned initialIndex, unsigned finalIndex) {
+	unsigned length = this->Length();
+	assert(initialIndex >= 0 && initialIndex <= finalIndex);
+	assert(finalIndex < length);
+	
+	length = finalIndex - initialIndex;
+	char* temp = (char*)malloc(sizeof(char) * (length + 1));
+	assert(temp != NULL);
+
+	strncpy_s(temp, length + 1, this->string, length);
+	Mystr nueva(temp);
+	free(temp);
+
 	return nueva;
 }
 
