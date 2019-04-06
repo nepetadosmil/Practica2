@@ -225,6 +225,11 @@ unsigned Mystr::ToLower() {
 }
 
 
+bool Mystr::StartsWith(const Mystr& other) {
+	return (!strncmp(this->string, other.string, ((Mystr)other).Length()));
+}
+
+
 void Mystr::Print(){
 	std::cout << string << std::endl;
 }

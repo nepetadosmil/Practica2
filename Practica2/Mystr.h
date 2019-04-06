@@ -106,6 +106,11 @@ public:
 	// @Return	unsigned		Total number of characters converted to uppercase
 	unsigned ToLower();
 
+	// Checks if the string starts with parameter given
+	// @Param	const &Mystr	String to compare the beginning
+	// @Returns	bool			true if string starts with the one given
+	bool StartsWith(const Mystr& other);
+
 	// Prints the string
 	void Print();
 
