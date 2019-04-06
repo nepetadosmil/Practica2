@@ -37,6 +37,7 @@ public:
 	Mystr(const char *other);
 
 
+
 	/*************/
 	/* FUNCTIONS */
 	/*************/
@@ -97,8 +98,13 @@ public:
 	// @Return	unsigned		Total number of spaces removed
 	unsigned Trim();
 
+	// Converts the string to uppercase
+	// @Return	unsigned		Total number of characters converted to uppercase
+	unsigned ToUpper();
 
+	// Prints the string
 	void Print();
+
 
 
 	/*************/

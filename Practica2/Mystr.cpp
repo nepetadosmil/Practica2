@@ -192,6 +192,23 @@ unsigned Mystr::Trim() {
 	return removed;
 }
 
+
+unsigned Mystr::ToUpper() {
+	unsigned count = 0;
+	char tmp;
+	for (unsigned i = 0; this->string[i] != '\0'; ++i) {
+		tmp = toupper(this->string[i]);
+		
+		if (tmp == this->string[i])
+			continue;
+		//If not CAPS already
+		this->string[i] = tmp;
+		++count;
+	}
+	return count;
+}
+
+
 void Mystr::Print(){
 	std::cout << string << std::endl;
 }
