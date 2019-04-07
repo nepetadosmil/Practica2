@@ -245,10 +245,14 @@ Mystr Mystr::Concatenate(const Mystr& other) {
 	unsigned len_this = this->Length();
 	unsigned len_other = ((Mystr)other).Length();
 
-	Mystr nueva(*this);//Creates new object
-	nueva.check_mem(len_this + len_other);//Memory for both strings
-	
-	strncpy_s(nueva.string + len_this, len_other + 1, other.string, len_other);//Concatenates second string
+	char* tmp = (char*)malloc(sizeof(char) * (len_this + len_other + 1));
+	assert(tmp != NULL);
+
+	strcpy_s(tmp, len_this + len_other + 1, this->string);
+	strcpy_s(tmp + len_this, len_other + 1, other.string);
+
+	Mystr nueva(tmp);//Creates new object
+	free(tmp);
 
 	return nueva;
 }
