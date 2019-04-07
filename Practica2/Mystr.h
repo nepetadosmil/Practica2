@@ -123,6 +123,13 @@ public:
 	// @Returns	Mystr			Mystr object with other concatenated
 	Mystr Concatenate(const Mystr& other);
 
+	// Introduces the given string at the position given
+	// @Param	const &Mystr	String to be introduced
+	// @Param	unsigned		index where string should be introduced
+	// @Precond					index <= current length
+	// @Returns	Mystr			Mystr object with string inserted
+	Mystr Introduce(const Mystr& other, unsigned index);
+
 	// Prints the string
 	void Print();
 

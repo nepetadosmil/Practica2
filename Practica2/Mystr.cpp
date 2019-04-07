@@ -248,6 +248,26 @@ Mystr Mystr::Concatenate(const Mystr& other) {
 	return temp;
 }
 
+
+Mystr Mystr::Introduce(const Mystr& other, unsigned index) {
+	unsigned len_this = this->Length();
+	assert(index <= len_this);
+	unsigned len_other = ((Mystr)other).Length();
+
+	char* tmp = (char*)malloc(sizeof(char) * (len_this + len_other + 1));
+	assert(tmp != NULL);
+
+	memcpy(tmp, this->string, sizeof(char) * index);//First part of original string
+	memcpy(tmp + index, other.string, sizeof(char) * len_other);//Inserts the other
+	memcpy(tmp + index + len_other, this->string + index, sizeof(char) * (len_this - index + 1));//Writes the rest of the original
+
+	Mystr nueva(tmp);
+	free(tmp);
+
+	return nueva;
+}
+
+
 void Mystr::Print(){
 	std::cout << string << std::endl;
 }
