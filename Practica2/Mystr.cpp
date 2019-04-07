@@ -276,16 +276,10 @@ Mystr Mystr::Introduce(const Mystr& other, unsigned index) {
 	return nueva;
 }
 
-
-void Mystr::Print(){
-	std::cout << this->string << std::endl;
-}
-
-
-
 /*************/
 /* OPERATORS */
 /*************/
+
 bool Mystr::operator==(const Mystr &other){
 	return (!strcmp(string, other.string));
 }
@@ -310,11 +304,29 @@ bool Mystr::operator>=(const Mystr & other) {
 	return !((*this) < other);
 }
 
+Mystr Mystr::operator+(const Mystr& other) {
+	return ((*this).Concatenate(other));
+}
+
+void Mystr::operator=(const char* newStr) {
+	this->capacity = ((strlen(newStr) + 1) * MEM_MULTIPLIER) + MEM_ADDER;
+	this->string = (char*)malloc(sizeof(char) * this->capacity);
+
+	assert(this->string != NULL);//Memory was allocated
+	strcpy_s(this->string, sizeof(char) * this->capacity, newStr);
+}
+
+std::ostream& operator<<(std::ostream& os, const Mystr& str){
+	os << str.string;
+	return os;
+}
+
+
+
 char & Mystr::operator[](unsigned index){
 	assert(index < this->capacity);
 	return this->string[index];
 }
 
 Mystr::~Mystr(){
-	free(this->string);
 }

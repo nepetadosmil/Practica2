@@ -130,11 +130,6 @@ public:
 	// @Returns	Mystr			Mystr object with string inserted
 	Mystr Introduce(const Mystr& other, unsigned index);
 
-	// Prints the string
-	void Print();
-
-
-
 	/*************/
 	/* OPERATORS */
 	/*************/
@@ -168,6 +163,18 @@ public:
 	// @Param	Mystr			Mystr to compare
 	// @Return	bool			result of the comparation
 	bool operator >= (const Mystr& other);
+
+	// Concatenate two Mystr.
+	// @Param	Mystr			Mystr to concatenate
+	// @Return	char*			Mystr concatenated
+	Mystr operator + (const Mystr& other);
+
+	// Changes the Mystr.
+	// @Param	char*			String
+	void operator = (const char* newStr);
+
+	// Print Mystr
+	friend std::ostream& operator<<(std::ostream& os, const Mystr& str);
 
 	// Get the character at given index.
 	// @Precond					index >= 0 && index < capacity
