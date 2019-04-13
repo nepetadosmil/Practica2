@@ -171,7 +171,7 @@ public:
 
 	// Changes the Mystr.
 	// @Param	char*			String
-	void operator = (const char* newStr);
+	void operator = (const Mystr& other);
 
 	// Print Mystr
 	friend std::ostream& operator<<(std::ostream& os, const Mystr& str);

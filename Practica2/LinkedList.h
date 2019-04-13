@@ -71,8 +71,6 @@ public:
 	// Complejidad espacial: O(1)
 	void deleteNode(int pos);
 
-	// Destructor. Libera memoria
-	// Complejidad temporal: O(n)
-	// Complejidad espacial: O(1)
+	// Destructor. Free memory
 	~LinkedList();
 };

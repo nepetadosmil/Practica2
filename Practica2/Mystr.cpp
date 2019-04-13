@@ -308,12 +308,13 @@ Mystr Mystr::operator+(const Mystr& other) {
 	return ((*this).Concatenate(other));
 }
 
-void Mystr::operator=(const char* newStr) {
-	this->capacity = ((strlen(newStr) + 1) * MEM_MULTIPLIER) + MEM_ADDER;
+void Mystr::operator=(const Mystr &other) {
+	
+	this->capacity = ((strlen(other.string) + 1) * MEM_MULTIPLIER) + MEM_ADDER;
 	this->string = (char*)malloc(sizeof(char) * this->capacity);
 
 	assert(this->string != NULL);//Memory was allocated
-	strcpy_s(this->string, sizeof(char) * this->capacity, newStr);
+	strcpy_s(this->string, sizeof(char) * this->capacity, other.string);
 }
 
 std::ostream& operator<<(std::ostream& os, const Mystr& str){
@@ -322,11 +323,11 @@ std::ostream& operator<<(std::ostream& os, const Mystr& str){
 }
 
 
-
 char & Mystr::operator[](unsigned index){
 	assert(index < this->capacity);
 	return this->string[index];
 }
 
 Mystr::~Mystr(){
+	free(string);
 }
